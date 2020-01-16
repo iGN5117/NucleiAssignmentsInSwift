@@ -32,9 +32,22 @@ class Utility {
         print("---------------------------------------------------------------------------------------------------------------------------------")
         
         for user in sortedUsers {
-            print("\(user.fullName)   \(user.rollNumber)   \(user.age)   \(user.address)   ")
+            var toPrint = "\(user.fullName)   \(user.rollNumber)   \(user.age)   \(user.address)   "
+          
+            let courses = user.courses
+            for course in courses {
+                toPrint.append("\(course) ")
+            }
+            print(toPrint)
             print("---------------------------------------------------------------------------------------------------------------------------------")
             
         }
+    }
+    static func clearAll(name: inout String, rollNumber: inout Int, age: inout Int, address: inout String, courses: inout [Course]) {
+        name = ""
+        rollNumber = 0
+        age = 0
+        address = ""
+        courses = []
     }
 }

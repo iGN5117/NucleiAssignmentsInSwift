@@ -76,9 +76,9 @@ while(continueLoop) {
                 var enteredCourses = 0
                 while(continueLoop) {
                     
-                    print("Enter atleast \(4 - enteredCourses) courses opted by the user in a space seperated format: ")
+                    print("Enter atleast \(4 - enteredCourses) course(s) opted by the user in a space seperated format: ")
                     if let optionalInput = readLine() {
-                        var courseString = optionalInput.components(separatedBy: " ")
+                        let courseString = optionalInput.components(separatedBy: " ")
                         for course in courseString {
                             if let actualCourse = try?Course(rawValue: course) {
                                 courses.append(actualCourse)
@@ -98,6 +98,7 @@ while(continueLoop) {
                     print(c)
                 }
                 users[rollNumber] = User(fullName: name, address: address, age: age, rollNumber: rollNumber, courses: courses)
+                Utility.clearAll(name: &name, rollNumber: &rollNumber, age: &age, address: &address, courses: &courses)
                 
             }
             else if choice == 2 {
