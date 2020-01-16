@@ -13,6 +13,7 @@ protocol Operations {
     func getAncestors(nodeId: Int) -> [Node]
     func getDescendants(nodeId: Int) -> [Node]
     func deleteDependency(parentId: Int, childId: Int)
+    @discardableResult
     func deleteNode(nodeId: Int) -> Node?
     func addDependency(parentId: Int, childId: Int)
     func addNode(node: Node)

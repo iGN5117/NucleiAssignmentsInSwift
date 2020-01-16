@@ -68,17 +68,81 @@ class DependencyGraph: Operations {
     }
     func deleteDependency(parentId: Int, childId: Int) {
         if let parent = nodes[parentId], let child = nodes[childId] {
-            
+           var childrenOfParent = parent.getNodeChildren()
+           var parentsOfChild = child.getNodeParents()
+            childrenOfParent.remove(childId)
+            parentsOfChild.remove(parentId)
+            parent.children = childrenOfParent
+            child.parents = parentsOfChild
+        }
+        else {
+            print("Invalid parent or child")
         }
     }
+    @discardableResult
     func deleteNode(nodeId: Int) -> Node? {
-        
+       
+        if let deletedNode = nodes[nodeId] {
+            for parent in deletedNode.getNodeParents() {
+                deleteDependency(parentId: parent, childId: nodeId)
+            }
+            for child in deletedNode.getNodeChildren() {
+                deleteDependency(parentId: nodeId, childId: child)
+            }
+            nodes[nodeId] = nil
+            return deletedNode
+        }
+        else {
+            print("Invalid node entered...")
+            return nil
+        }
     }
     func addDependency(parentId: Int, childId: Int) {
-        
+        if let parent = nodes[parentId], let child = nodes[childId] {
+            if(getAncestors(nodeId: parentId).contains(child)) {
+                print("Cannot add dependecy")
+                return
+            }
+            if(getDescendants(nodeId: childId).contains(parent)) {
+                print("Cannot add dependecy")
+                return
+            }
+            var childrenOfParent = parent.getNodeChildren()
+            var parentsofChild = child.getNodeParents()
+            childrenOfParent.insert(childId)
+            parentsofChild.insert(parentId)
+            parent.children = childrenOfParent
+            child.parents = parentsofChild
+            print("Successfully added dependency between \(parent.getName()) and \(child.getName())")
+        }
+        else {
+            print("Invalid parent or child entered... Do you want to enter the nodes? (Y/N)")
+//            if let input = readLine() {
+//                if input == "Y" {
+//                    if(parent == nil) {
+//                        
+//                    }
+//                }
+//                else if input == "N" {
+//                    return
+//                }
+//                else {
+//                    print("Invalid input entered..")
+//                    return
+//                }
+//            } else {
+//                print("Invalid input (should never reach here...)")
+//            }
+        }
     }
     func addNode(node: Node) {
-        
+        if existingNames.contains(node.getName()) {
+            print("Cannot add node since a node with name \(node.getName()) already exisits")
+            return
+        }
+        nodes[node.getNodeId()] = node
+        existingNames.insert(node.getName())
+        print("Sucessfully added a node with name \(node.getName()) and with the ID: \(node.getNodeId())")
     }
     func ancestorsUtil(ancestors: inout [Node], parents: [Node]) {
         for node in parents {
@@ -90,6 +154,16 @@ class DependencyGraph: Operations {
         for node in children {
             descendants.append(node)
             descendantsUtil(descendants: &descendants, children: getChildren(nodeId: node.getNodeId()))
+        }
+    }
+    func printDependencyGraph(graph: DependencyGraph) {
+        for node in graph.nodes.values {
+            var toPrint = "\(node.getName()) --------->  "
+            let children = getChildren(nodeId: node.getNodeId())
+            for child in children {
+                toPrint.append("\(child.getName()) ")
+            }
+            print(toPrint)
         }
     }
 }
