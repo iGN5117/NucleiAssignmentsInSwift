@@ -7,7 +7,15 @@
 //
 
 import Foundation
-class User {
+class User: Comparable{
+    static func < (lhs: User, rhs: User) -> Bool {
+        return lhs.fullName < rhs.fullName
+    }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.rollNumber < rhs.rollNumber
+    }
+    
     static var existingUsers = Set<Int>()
     let fullName, address: String
     let age, rollNumber: Int

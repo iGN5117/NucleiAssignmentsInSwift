@@ -9,7 +9,7 @@
 import Foundation
 class Validator {
     static func validateName(name: String) -> Bool {
-        if(!(Utility.isAlpha(str: name)))
+        if((Utility.isAlpha(str: name)))
         {
             return false
         }

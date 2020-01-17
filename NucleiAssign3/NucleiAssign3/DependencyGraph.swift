@@ -9,10 +9,8 @@
 import Foundation
 class DependencyGraph: Operations {
     var nodes: [Int:Node]
-    var existingNames: Set<String>
     init() {
         nodes = [:]
-        existingNames = Set<String>()
     }
     
     
@@ -136,12 +134,7 @@ class DependencyGraph: Operations {
         }
     }
     func addNode(node: Node) {
-        if existingNames.contains(node.getName()) {
-            print("Cannot add node since a node with name \(node.getName()) already exisits")
-            return
-        }
         nodes[node.getNodeId()] = node
-        existingNames.insert(node.getName())
         print("Sucessfully added a node with name \(node.getName()) and with the ID: \(node.getNodeId())")
     }
     func ancestorsUtil(ancestors: inout [Node], parents: [Node]) {

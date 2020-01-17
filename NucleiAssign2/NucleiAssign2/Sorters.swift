@@ -12,13 +12,10 @@ class Sorters {
         if u1.fullName < u2.fullName {
             return true
         }
-        else if u1.fullName > u2.fullName {
-            return false
-        }
         else if u1.fullName == u2.fullName {
             return compareUserRollNumber(u1, u2)
         }
-        return true
+        return false  
     }
     static func compareUserRollNumber(_ u1: User, _ u2: User) -> Bool {
         return u1.rollNumber < u2.rollNumber

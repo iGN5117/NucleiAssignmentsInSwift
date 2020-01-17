@@ -81,8 +81,13 @@ while(continueLoop) {
                         let courseString = optionalInput.components(separatedBy: " ")
                         for course in courseString {
                             if let actualCourse = try?Course(rawValue: course) {
-                                courses.append(actualCourse)
-                                enteredCourses+=1
+                                if !courses.contains(actualCourse) {
+                                    courses.append(actualCourse)
+                                    enteredCourses+=1
+                                }
+                                else {
+                                    print("Already enrolled in course \(actualCourse) already")
+                                }
                             }
                             else {
                                 print("Invalid course \(course) entered, discarding it...")
@@ -93,9 +98,6 @@ while(continueLoop) {
                         }
                         
                     }
-                }
-                for c in courses {
-                    print(c)
                 }
                 users[rollNumber] = User(fullName: name, address: address, age: age, rollNumber: rollNumber, courses: courses)
                 Utility.clearAll(name: &name, rollNumber: &rollNumber, age: &age, address: &address, courses: &courses)
@@ -119,11 +121,11 @@ while(continueLoop) {
                         switch choice {
                         case 1:
                             if(descendingChoice == "N") {
-                                sortedUsers.sort(by: Sorters.compareUser)
+                                sortedUsers.sort(by: <)
                                 Utility.showUsers(sortedUsers)
                             }
                             else {
-                                sortedUsers.sort(by: Sorters.compareUserDesc)
+                                sortedUsers.sort(by: >)
                                 Utility.showUsers(sortedUsers)
                             }
                         case 2:
@@ -175,12 +177,12 @@ while(continueLoop) {
             else if choice == 4 {
                 break
             }
-                else {
-                    print("Invalid choice entered.....")
-                }
+            else {
+                print("Invalid choice entered.....")
             }
         }
-        
     }
     
+}
+
 

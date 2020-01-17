@@ -9,20 +9,24 @@
 import Foundation
 class Utility {
     static func isAlpha(str: String) -> Bool {
-        var result = true
-        for character in str {
-            switch character {
-            case "a"..."z":
-                result = true
-            case "A"..."Z":
-                result = true
-            case " ":
-                result = true
-            default:
-                result = false
-            }
+        //        for character in str {
+        //            switch character {
+        //            case "a"..."z":
+        //                result = true
+        //            case "A"..."Z":
+        //                result = true
+        //            case " ":
+        //                result = true
+        //            default:
+        //                result = false
+        //            }
+        //        }
+        let letters = NSCharacterSet.letters
+        let range = str.rangeOfCharacter(from: letters)
+        if range == nil {
+            return true
         }
-        return result
+        return false
     }
     static func showUsers(_ sortedUsers: [User]) {
         print("---------------------------------------------------------------------------------------------------------------------------------")
@@ -33,7 +37,7 @@ class Utility {
         
         for user in sortedUsers {
             var toPrint = "\(user.fullName)   \(user.rollNumber)   \(user.age)   \(user.address)   "
-          
+            
             let courses = user.courses
             for course in courses {
                 toPrint.append("\(course) ")
