@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addPhone" id="KGk-i7-Jjw" customClass="AddPhoneTableViewCell" customModule="TestWithRishav">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IjV-xh-ocR">
+                        <rect key="frame" x="247" y="7" width="97" height="30"/>
+                        <state key="normal" title="Phone  &gt;"/>
+                        <connections>
+                            <action selector="phoneButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lqI-nf-ZNy"/>
+                        </connections>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" id="ZfC-zi-qFE">
+                        <rect key="frame" x="6" y="5" width="233" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="IjV-xh-ocR" secondAttribute="bottom" constant="7" id="1Jm-Ex-roW"/>
+                    <constraint firstItem="IjV-xh-ocR" firstAttribute="leading" secondItem="ZfC-zi-qFE" secondAttribute="trailing" constant="8" id="8We-3S-lIs"/>
+                    <constraint firstAttribute="trailing" secondItem="IjV-xh-ocR" secondAttribute="trailing" constant="6" id="ZrL-23-C7x"/>
+                    <constraint firstItem="IjV-xh-ocR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="ogY-Gp-fWA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="showTypesOfPhoneButton" destination="IjV-xh-ocR" id="S3f-sI-33b"/>
+                <outlet property="typesOfPhoneTextField" destination="ZfC-zi-qFE" id="MOT-Ai-Bb8"/>
+            </connections>
+            <point key="canvasLocation" x="4.3478260869565224" y="87.723214285714278"/>
+        </tableViewCell>
+    </objects>
+</document>
